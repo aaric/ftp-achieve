@@ -23,14 +23,13 @@ public class FtpServiceTest {
      * 测试文件
      */
     private static final String testFileDirectory = "C:\\Users\\root\\Desktop\\";
-    private static final String testFileName = "OpenBSD.jpg";
+    private static final String testFileName = "404.jpg";
 
     @Autowired
     private FtpService ftpService;
 
     @Test
-    @Ignore
     public void testUploadFile() {
-        ftpService.uploadFile("/" + testFileName, new File(testFileDirectory, testFileName));
+        ftpService.uploadFile("/404/" + testFileName, new File(testFileDirectory, testFileName));
     }
 }

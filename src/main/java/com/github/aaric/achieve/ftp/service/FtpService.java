@@ -38,11 +38,8 @@ public interface FtpService {
     /**
      * 下载文件到本地
      *
-     * @param remoteFilePath     远程文件存储路径，例如/upload/test/test.txt
-     * @param localFileDirectory 本地文件存储目录，例如：D:\download\file。若此值为null,则为临时文件存储目录
-     * @param localFileName      本地存储文件名称，例如test.txt。 若此值为null,则为远程文件名称
+     * @param remotePath 上传到FTP相对路径，例如“/uploads/test/test.txt”
      * @return
      */
-    File downloadFile(String remoteFilePath, String localFileDirectory, String localFileName);
-
+    File downloadFile(String remotePath);
 }

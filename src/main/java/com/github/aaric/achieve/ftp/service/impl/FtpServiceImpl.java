@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * FTP文件服务Service实现
@@ -178,6 +179,28 @@ public class FtpServiceImpl implements FtpService {
         }
     }
 
+    @Override
+    public File downloadFile(String remotePath) {
+        // 初始化FTPClient对象
+        FTPClient ftpClient = getFTPClient();
+        if (null != ftpClient) {
+            try {
+                // 下载文件
+                File thisFile = downloadFile(ftpClient, remotePath);
+
+                // 断开连接，释放连接资源
+                ftpClient.disconnect();
+                logger.info("关闭FTP连接...");
+
+                // 返回下载文件
+                return thisFile;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     /**
      * 初始化与FTP建立连接
      *
@@ -312,76 +335,36 @@ public class FtpServiceImpl implements FtpService {
         return false;
     }
 
-    @Override
-    public File downloadFile(String remoteFilePath, String localFileDirectory, String localFileName) {
+    /**
+     * 下载文件到本地
+     *
+     * @param ftpClient  FTP对象
+     * @param remotePath 上传到FTP相对路径，例如“/uploads/test/test.txt”
+     * @return
+     */
+    private File downloadFile(FTPClient ftpClient, String remotePath) {
+        try {
+            // 设置文件下载位置
+            String suffix = remotePath.substring(remotePath.lastIndexOf("."));
+            File download = new File(FileUtils.getTempDirectory(), UUID.randomUUID().toString() + suffix);
 
-        // 去掉 /files
-        if (null != remoteFilePath && remoteFilePath.length() > 6) {
-            String isFiles = remoteFilePath.substring(0, 6);
-            if ("/files".equals(isFiles)) {
-                remoteFilePath = remoteFilePath.substring(6, remoteFilePath.length());
+            // 下载文件
+            OutputStream os = new FileOutputStream(download);
+            if (ftpClient.retrieveFile(remotePath, os)) {
+                return download;
             }
-        }
 
-        // 初始化FTPClient对象
-        FTPClient ftpClient = getFTPClient();
-        if (null != ftpClient) {
-            OutputStream os = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                if (StringUtils.isNotBlank(remoteFilePath)) {
-                    //远程文件目录
-                    String remoteDirectory = remoteFilePath.substring(0, remoteFilePath.lastIndexOf("/") + 1);
-                    //远程文件名称
-                    String remoteFileName = remoteFilePath.substring(remoteFilePath.lastIndexOf("/") + 1);
-                    //切换到指定目录
-                    boolean changeDir = ftpClient.changeWorkingDirectory(getStringForIso(remoteDirectory));
-                    if (changeDir) {
-                        //遍历该目录的所有文件，检查是否存在文件
-                        boolean fileIsExists = false;
-                        for (FTPFile ftpFile : ftpClient.listFiles()) {
-                            if (StringUtils.equals(remoteFileName, ftpFile.getName())) {
-                                fileIsExists = true;
-                                break;
-                            }
-                        }
-                        if (fileIsExists) {
-                            File dir = null;
-                            if (null == localFileDirectory) {
-                                localFileDirectory = FileUtils.getTempDirectoryPath();
-                                dir = new File(localFileDirectory);
-                            } else {
-                                dir = new File(localFileDirectory);
-                                if (!dir.exists()) {
-                                    dir.mkdirs();
-                                }
-                            }
-                            if (null == localFileName) {
-                                localFileName = remoteFileName;
-                            }
-                            File file = new File(dir, localFileName);
-                            os = new FileOutputStream(file);
-                            if (ftpClient.retrieveFile(remoteFileName, os)) {
-                                return file;
-                            }
-                        }
-                    }
-                }
-
+                // 断开连接，释放连接资源
+                ftpClient.disconnect();
+                logger.info("关闭FTP连接...");
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    if (null != os) {
-                        os.close();
-                    }
-                    ftpClient.disconnect();
-                    logger.info("关闭FTP连接...");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
-
         return null;
     }
 }

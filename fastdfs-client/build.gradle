@@ -1,0 +1,5 @@
+dependencies {
+    implementation "com.github.tobato:fastdfs-client"
+
+    implementation "org.springframework.boot:spring-boot-starter"
+}

@@ -1,0 +1,43 @@
+# Tomcat settings
+server:
+  port: ${TOMCAT_SERVER_PORT:8080}
+
+# Management settings
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# Logging settings
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: INFO
+        web: ERROR
+      hibernate: INFO
+    com:
+      sample: DEBUG
+  file:
+    path: ${LOGGING_FILE_PATH:./}
+    name: output.log
+    max-size: ${LOGGING_FILE_MAX_SIZE:20MB}
+
+# Spring settings
+spring:
+  profiles:
+    active: dev
+  application:
+    name: fastdfs-client
+
+# FastDFS settings
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list:
+    - 127.0.0.1:22122

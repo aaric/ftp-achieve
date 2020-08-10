@@ -1,15 +1,15 @@
-group 'com.github.aaric'
-version '0.2.2-SNAPSHOT'
+group "com.github.aaric"
+version "0.2.2-SNAPSHOT"
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
+apply plugin: "java"
+apply plugin: "org.springframework.boot"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     /*jcenter()*/
-    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url "https://maven.aliyun.com/repository/public" }
 }
 
 dependencies {
@@ -30,13 +30,13 @@ dependencies {
 }
 
 configurations {
-    compile.exclude group: "org.springframework.boot", module: 'spring-boot-starter-logging'
+    compile.exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
 }
 
 buildscript {
     repositories {
         /*jcenter()*/
-        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url "https://maven.aliyun.com/repository/public" }
     }
 
     dependencies {

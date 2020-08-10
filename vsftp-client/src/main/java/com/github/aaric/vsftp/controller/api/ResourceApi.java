@@ -1,4 +1,4 @@
-package com.github.aaric.achieve.ftp.controller.api;
+package com.github.aaric.vsftp.controller.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

@@ -1,6 +1,6 @@
-package com.github.aaric.achieve.ftp.service.impl;
+package com.github.aaric.vsftp.service.impl;
 
-import com.github.aaric.achieve.ftp.service.FtpService;
+import com.github.aaric.vsftp.service.FtpService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTP;

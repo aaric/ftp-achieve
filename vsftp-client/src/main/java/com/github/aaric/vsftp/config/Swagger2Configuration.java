@@ -1,4 +1,4 @@
-package com.github.aaric.achieve.ftp.config;
+package com.github.aaric.vsftp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

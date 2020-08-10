@@ -1,7 +1,7 @@
-package com.github.aaric.achieve.ftp.controller;
+package com.github.aaric.vsftp.controller;
 
-import com.github.aaric.achieve.ftp.controller.api.ResourceApi;
-import com.github.aaric.achieve.ftp.service.FtpService;
+import com.github.aaric.vsftp.controller.api.ResourceApi;
+import com.github.aaric.vsftp.service.FtpService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

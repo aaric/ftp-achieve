@@ -1,4 +1,4 @@
-package com.github.aaric.achieve.ftp;
+package com.github.aaric.vsftp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

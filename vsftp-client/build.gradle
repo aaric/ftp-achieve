@@ -1,0 +1,15 @@
+apply plugin: "org.springframework.boot"
+
+dependencies {
+    compile "org.apache.commons:commons-lang3"
+
+    compile "commons-io:commons-io"
+    compile "commons-net:commons-net"
+
+    compile "org.springframework.boot:spring-boot-starter"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-log4j2"
+
+    compile "io.springfox:springfox-swagger2:2.6.1"
+    compile "io.springfox:springfox-swagger-ui:2.6.1"
+}

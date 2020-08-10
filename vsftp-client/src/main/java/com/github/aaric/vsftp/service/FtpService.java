@@ -1,4 +1,4 @@
-package com.github.aaric.achieve.ftp.service;
+package com.github.aaric.vsftp.service;
 
 import java.io.File;
 import java.util.Map;

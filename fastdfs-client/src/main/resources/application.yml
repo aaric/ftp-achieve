@@ -19,11 +19,12 @@ logging:
         web: ERROR
       hibernate: INFO
     com:
-      sample: DEBUG
+      github: DEBUG
   file:
     path: ${LOGGING_FILE_PATH:./}
     name: output.log
     max-size: ${LOGGING_FILE_MAX_SIZE:20MB}
+    max-history: ${LOGGING_FILE_MAX_HISTORY:100}
 
 # Spring settings
 spring:
@@ -41,3 +42,5 @@ fdfs:
     height: 150
   tracker-list:
     - 127.0.0.1:22122
+  test:
+    base-path: ./

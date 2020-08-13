@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * FastDFSConfig
+ * FastDFS配置
  *
  * @author Aaric, created on 2020-08-11T10:25.
  * @version 1.1.0-SNAPSHOT

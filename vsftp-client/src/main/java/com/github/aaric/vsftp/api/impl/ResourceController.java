@@ -1,6 +1,6 @@
-package com.github.aaric.vsftp.controller;
+package com.github.aaric.vsftp.api.impl;
 
-import com.github.aaric.vsftp.controller.api.ResourceApi;
+import com.github.aaric.vsftp.api.ResourceApi;
 import com.github.aaric.vsftp.service.FtpService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;

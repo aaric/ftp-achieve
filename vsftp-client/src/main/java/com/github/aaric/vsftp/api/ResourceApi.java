@@ -1,4 +1,4 @@
-package com.github.aaric.vsftp.controller.api;
+package com.github.aaric.vsftp.api;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author Aaric, created on 2018-12-10T21:49.
  * @since 0.2.0-SNAPSHOT
  */
-@Api(description = "资源模块API")
+@Api(tags = "资源模块API")
 public interface ResourceApi {
 
     @ApiOperation("上传图片")

@@ -1,6 +1,11 @@
+apply plugin: "org.springframework.boot"
+
 dependencies {
     implementation "commons-io:commons-io"
     implementation "com.github.tobato:fastdfs-client"
 
-    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+
+    implementation "io.springfox:springfox-swagger2"
+    implementation "com.github.xiaoymin:knife4j-spring-boot-starter"
 }

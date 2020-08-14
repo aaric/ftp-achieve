@@ -59,7 +59,7 @@ public class AspectConfig {
     }
 
     /**
-     * 处理API请求次数统计
+     * 处理API请求计数
      */
     @Before("apiRoute() || apiGetRoute() || apiPostRoute() || apiPutRoute() || apiDeleteRoute()")
     public void processApiCount() {

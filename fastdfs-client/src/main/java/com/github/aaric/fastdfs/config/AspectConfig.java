@@ -1,9 +1,14 @@
 package com.github.aaric.fastdfs.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * AspectConfig
@@ -11,8 +16,9 @@ import org.springframework.context.annotation.Configuration;
  * @author Aaric, created on 2020-08-14T13:49.
  * @version 1.2.0-SNAPSHOT
  */
+@Slf4j
 @Aspect
-//@Configuration
+@Configuration
 public class AspectConfig {
 
     /**
@@ -55,6 +61,8 @@ public class AspectConfig {
      */
     @Before("apiRoute() || apiGetRoute() || apiPostRoute() || apiPutRoute() || apiDeleteRoute()")
     public void processApiCount() {
-        System.err.println("hello");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder
+                .getRequestAttributes()).getRequest();
+        log.info("url -> {}", request.getRequestURI());
     }
 }

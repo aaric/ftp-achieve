@@ -1,8 +1,8 @@
 package com.github.aaric.fastdfs.api.impl;
 
 import com.github.aaric.fastdfs.api.ResourceApi;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ResourceController implements ResourceApi {
 
     @Override
-    @RequestMapping(value = "/uploadImage", method = RequestMethod.GET)
+    @GetMapping(value = "/uploadImage")
     public String uploadImage() {
         return "uploadImage";
     }

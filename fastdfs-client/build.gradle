@@ -1,6 +1,8 @@
 apply plugin: "org.springframework.boot"
 
 dependencies {
+//    implementation "com.incarcloud:ic-monitor-client:1.1.0-SNAPSHOT"
+
     implementation "commons-io:commons-io"
     implementation "com.github.tobato:fastdfs-client"
 

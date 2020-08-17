@@ -9,7 +9,6 @@ import io.swagger.annotations.ApiOperation;
  * @author Aaric, created on 2020-08-13T16:24.
  * @version 1.2.0-SNAPSHOT
  */
-
 @Api(tags = "资源模块API")
 public interface ResourceApi {
 

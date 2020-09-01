@@ -8,5 +8,6 @@ build/
 application-*.yml
 bootstrap-*.yml
 .DS_Store
+Thumbs.db
 out/
 lombok.*

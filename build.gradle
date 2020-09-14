@@ -76,6 +76,8 @@ subprojects {
 
             dependency "io.springfox:springfox-swagger2:2.9.2"
             dependency "com.github.xiaoymin:knife4j-spring-boot-starter:2.0.4"
+
+            dependency "org.bouncycastle:bcpkix-jdk15on:1.66"
         }
     }
 

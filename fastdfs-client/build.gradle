@@ -6,6 +6,8 @@ dependencies {
     implementation "commons-io:commons-io"
     implementation "com.github.tobato:fastdfs-client"
 
+    implementation "org.bouncycastle:bcpkix-jdk15on"
+
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-aop"
 

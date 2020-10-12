@@ -2,13 +2,13 @@ package com.github.aaric.fastdfs.api.impl;
 
 import com.github.aaric.fastdfs.api.ResourceApi;
 import com.wf.captcha.ArithmeticCaptcha;
-import com.wf.captcha.utils.CaptchaUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * 资源API接口实现
@@ -28,7 +28,8 @@ public class ResourceController implements ResourceApi {
 
     @Override
     @GetMapping("/captcha")
-    public void captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//    public void captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String, String> captcha() {
 //        // GIF
 //        GifCaptcha captcha = new GifCaptcha(130, 48);
 //        //ChineseGifCaptcha captcha = new ChineseGifCaptcha(130, 48);
@@ -36,10 +37,23 @@ public class ResourceController implements ResourceApi {
 //        CaptchaUtil.out(captcha, request, response);
 
         // Math
+//        ArithmeticCaptcha captcha = new ArithmeticCaptcha(130, 48);
+//        captcha.setLen(3);
+//        System.err.println(captcha.getArithmeticString());
+//        System.err.println(captcha.text());
+//        CaptchaUtil.out(captcha, request, response);
+
+        // JSON
         ArithmeticCaptcha captcha = new ArithmeticCaptcha(130, 48);
         captcha.setLen(3);
         System.err.println(captcha.getArithmeticString());
         System.err.println(captcha.text());
-        CaptchaUtil.out(captcha, request, response);
+        String imageKey = UUID.randomUUID().toString();
+        String imageBase64 = captcha.toBase64();
+
+        Map<String, String> imageMap = new HashMap<>();
+        imageMap.put("key", imageKey);
+        imageMap.put("base64", imageBase64);
+        return imageMap;
     }
 }

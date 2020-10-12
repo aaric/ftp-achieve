@@ -1,15 +1,16 @@
 apply plugin: "org.springframework.boot"
 
 dependencies {
-//    implementation "com.incarcloud:ic-monitor-client:1.1.0-SNAPSHOT"
-
     implementation "commons-io:commons-io"
     implementation "com.github.tobato:fastdfs-client"
 
     implementation "org.bouncycastle:bcpkix-jdk15on"
 
-    implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-aop"
+    implementation ("org.springframework.boot:spring-boot-starter-web") {
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
+    }
+    implementation "org.springframework.boot:spring-boot-starter-undertow"
 
     implementation "io.springfox:springfox-swagger2"
     implementation "com.github.xiaoymin:knife4j-spring-boot-starter"

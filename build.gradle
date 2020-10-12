@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "io.freefair.lombok" version "4.1.6" apply false
-    id "io.spring.dependency-management" version "1.0.9.RELEASE" apply false
+    id "io.spring.dependency-management" version "1.0.10.RELEASE" apply false
     id "org.springframework.boot" version "2.2.5.RELEASE" apply false
 }
 
@@ -76,6 +76,10 @@ subprojects {
 
             dependency "io.springfox:springfox-swagger2:2.9.2"
             dependency "com.github.xiaoymin:knife4j-spring-boot-starter:2.0.4"
+
+            dependency "org.bouncycastle:bcpkix-jdk15on:1.66"
+
+            dependency "com.github.whvcse:easy-captcha:1.6.2"
         }
     }
 
@@ -117,9 +121,13 @@ subprojects {
     task removeOutputLog() {
         def subProjectPath = project.projectDir
         if (null != subProjectPath) {
-            def lombokConfigFile = new File(subProjectPath, "output.log")
-            if (lombokConfigFile.exists()) {
-                lombokConfigFile.delete()
+            subProjectPath.list().each { filename ->
+                if (filename.endsWith(".log")) {
+                    def logFile = new File(subProjectPath, filename)
+                    if (logFile.exists()) {
+                        logFile.delete()
+                    }
+                }
             }
         }
     }

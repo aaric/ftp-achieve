@@ -4,8 +4,16 @@ dependencies {
     implementation "commons-io:commons-io"
     implementation "com.github.tobato:fastdfs-client"
 
-    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.bouncycastle:bcpkix-jdk15on"
+
+    implementation "org.springframework.boot:spring-boot-starter-aop"
+    implementation ("org.springframework.boot:spring-boot-starter-web") {
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
+    }
+    implementation "org.springframework.boot:spring-boot-starter-undertow"
 
     implementation "io.springfox:springfox-swagger2"
     implementation "com.github.xiaoymin:knife4j-spring-boot-starter"
+
+    implementation "com.github.whvcse:easy-captcha"
 }

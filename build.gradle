@@ -78,6 +78,8 @@ subprojects {
             dependency "com.github.xiaoymin:knife4j-spring-boot-starter:2.0.4"
 
             dependency "org.bouncycastle:bcpkix-jdk15on:1.66"
+
+            dependency "com.github.whvcse:easy-captcha:1.6.2"
         }
     }
 

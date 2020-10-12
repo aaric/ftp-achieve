@@ -3,6 +3,9 @@ package com.github.aaric.fastdfs.api;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * 资源API接口
  *
@@ -14,4 +17,7 @@ public interface ResourceApi {
 
     @ApiOperation("测试文件上传")
     String uploadImage();
+
+    @ApiOperation("测试文件上传")
+    void captcha(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

@@ -6,6 +6,7 @@ import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,14 @@ import java.time.Instant;
  * @author Aaric, created on 2020-08-10T10:29.
  * @version 1.0.0-SNAPSHOT
  */
+@Disabled
 @Slf4j
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class FastDFSTests {
 
     @Value("${fdfs.test.base-path}")
-    public String basePath;
+    private String basePath;
 
     @Autowired
     private FastFileStorageClient storageClient;

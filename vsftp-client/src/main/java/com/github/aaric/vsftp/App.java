@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Spring Boot Launcher.
  *
  * @author Aaric, created on 2018-12-10T13:49.
- * @since 0.0.1-SNAPSHOT
+ * @version 0.0.1-SNAPSHOT
  */
 @SpringBootApplication
 public class App {

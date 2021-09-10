@@ -18,7 +18,7 @@ import java.util.UUID;
  * 资源模块控制器
  *
  * @author Aaric, created on 2018-12-10T21:47.
- * @since 0.2.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  */
 @RestController
 @RequestMapping("/api/resource")

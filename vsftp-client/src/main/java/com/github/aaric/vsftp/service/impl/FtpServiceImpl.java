@@ -1,14 +1,13 @@
 package com.github.aaric.vsftp.service.impl;
 
 import com.github.aaric.vsftp.service.FtpService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +20,11 @@ import java.util.UUID;
  * FTP文件服务Service实现
  *
  * @author Aaric, created on 2018-12-10T21:16.
- * @since 0.1.0-SNAPSHOT
+ * @version 0.1.0-SNAPSHOT
  */
+@Slf4j
 @Service
 public class FtpServiceImpl implements FtpService {
-
-    /**
-     * Logger
-     */
-    private static final Logger logger = LoggerFactory.getLogger(FtpServiceImpl.class);
 
     /**
      * UTF-8
@@ -90,7 +85,7 @@ public class FtpServiceImpl implements FtpService {
                 if (StringUtils.isNotBlank(remotePath)) {
                     // 获得查询工作目录名称
                     String queryPathName = remotePath.substring(0, remotePath.lastIndexOf("/") + 1);
-                    System.out.println(queryPathName);
+                    log.info(queryPathName);
 
                     // 先判断目录是否存在，再判断文件是否存在
                     change = ftpClient.changeWorkingDirectory(getStringForIso(queryPathName));
@@ -105,7 +100,7 @@ public class FtpServiceImpl implements FtpService {
                         boolean flag = false;
                         for (FTPFile ftpFile : ftpClient.listFiles()) {
                             // 比较查询的文件名字和遍历查询得到的文件名称
-                            System.out.println(ftpFile.getName());
+                            log.info(ftpFile.getName());
                             if (StringUtils.equals(queryFileName, ftpFile.getName())) {
                                 flag = true;
                                 break;
@@ -122,7 +117,7 @@ public class FtpServiceImpl implements FtpService {
                 try {
                     // 断开连接，释放连接资源
                     ftpClient.disconnect();
-                    logger.info("关闭FTP连接...");
+                    log.info("关闭FTP连接...");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -146,7 +141,7 @@ public class FtpServiceImpl implements FtpService {
 
                 // 断开连接，释放连接资源
                 ftpClient.disconnect();
-                logger.info("关闭FTP连接...");
+                log.info("关闭FTP连接...");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -172,7 +167,7 @@ public class FtpServiceImpl implements FtpService {
 
                 // 断开连接，释放连接资源
                 ftpClient.disconnect();
-                logger.info("关闭FTP连接...");
+                log.info("关闭FTP连接...");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -190,7 +185,7 @@ public class FtpServiceImpl implements FtpService {
 
                 // 断开连接，释放连接资源
                 ftpClient.disconnect();
-                logger.info("关闭FTP连接...");
+                log.info("关闭FTP连接...");
 
                 // 返回下载文件
                 return thisFile;
@@ -224,10 +219,10 @@ public class FtpServiceImpl implements FtpService {
             // 如果连接失败则关闭连接
             if (FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
                 // 连接成功
-                logger.info("连接FTP服务器成功...");
+                log.info("连接FTP服务器成功...");
             } else {
                 // 连接失败
-                logger.info("连接FTP服务器失败...");
+                log.info("连接FTP服务器失败...");
                 ftpClient.disconnect();
             }
 
@@ -291,7 +286,7 @@ public class FtpServiceImpl implements FtpService {
                                 change = ftpClient.changeWorkingDirectory(getStringForIso(join));
                             } else {
                                 // 记录日志
-                                logger.info("创建目录" + join + "失败...");
+                                log.info("创建目录" + join + "失败...");
                             }
                         }
                     }
@@ -299,7 +294,7 @@ public class FtpServiceImpl implements FtpService {
                 } else {
                     // 直接切换到根目录("/")
                     change = ftpClient.changeWorkingDirectory("/");
-                    logger.info("直接切换到根目录\"/\"...");
+                    log.info("直接切换到根目录\"/\"...");
 
                 }
 
@@ -318,9 +313,9 @@ public class FtpServiceImpl implements FtpService {
                     input.close();
                     // 记录日志
                     if (upload) {
-                        logger.info("将\"" + uploadFile.getAbsolutePath() + "\"文件上传到FTP的\"" + remotePath + "\"目录成功...");
+                        log.info("将\"" + uploadFile.getAbsolutePath() + "\"文件上传到FTP的\"" + remotePath + "\"目录成功...");
                     } else {
-                        logger.info("将\"" + uploadFile.getAbsolutePath() + "\"文件上传到FTP的\"" + remotePath + "\"目录失败...");
+                        log.info("将\"" + uploadFile.getAbsolutePath() + "\"文件上传到FTP的\"" + remotePath + "\"目录失败...");
                     }
                 }
 
@@ -360,7 +355,7 @@ public class FtpServiceImpl implements FtpService {
             try {
                 // 断开连接，释放连接资源
                 ftpClient.disconnect();
-                logger.info("关闭FTP连接...");
+                log.info("关闭FTP连接...");
             } catch (IOException e) {
                 e.printStackTrace();
             }

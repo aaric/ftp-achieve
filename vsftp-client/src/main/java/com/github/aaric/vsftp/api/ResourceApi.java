@@ -12,7 +12,7 @@ import java.io.IOException;
  * 资源模块API
  *
  * @author Aaric, created on 2018-12-10T21:49.
- * @since 0.2.0-SNAPSHOT
+ * @version 0.2.0-SNAPSHOT
  */
 @Api(tags = "资源模块API")
 public interface ResourceApi {
